@@ -1,8 +1,12 @@
-#ifndef BUTTON_H_
-#define BUTTON_H_
+#ifndef BUTTON_H
+#define BUTTON_H
 
 #include <stdbool.h>
 #include <stdint.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #define MAX_BUTTON_COUNT 3
 
@@ -40,4 +44,7 @@ void button_irq_handler(button_t *btn, bool pressed);
 void button_tick(void);
 
 
-#endif
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
+#endif /* BUTTON_H */
