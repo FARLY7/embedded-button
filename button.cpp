@@ -1,30 +1,31 @@
 #include "button.h"
 
-#include <stddef.h> // for 'NULL'
+#include <stddef.h>
 #include <assert.h>
 #include <string.h>
 
-typedef enum {
-	PRESSED,
-	RELEASED,
-	TICK
-} debouncer_event_t;
-
-struct button {
-	bool pressed;
-	button_state_t state;
-	uint8_t debounce_cnt;
-	uint8_t debounce_reload;
-	button_callback_t callback;
-};
 
 static button_t buttons[MAX_BUTTON_COUNT] = {0};
 static size_t button_cnt = 0;
 
-static void default_button_listener(button_state_t state)
+
+/****************************************************/
+/* BUTTON CLASS 									*/
+/****************************************************/
+
+Button::Button(button_callback_t callback)
 {
-	(void)state;
+	this->callback = callback;
 }
+
+State Button::State()
+{
+	return this->State;
+}
+
+/****************************************************/
+/* BUTTON DEBOUNCER CLASS 							*/
+/****************************************************/
 
 static void button_debouncer(button_t *btn, debouncer_event_t event)
 {
